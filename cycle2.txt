@@ -1,0 +1,378 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package cycle2;
+
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ *
+ * @author William Tchang
+ */
+public class Cycle2 {
+
+    ////////////Notes par UE et par Semestre/////////////////
+    static final int TAILLE_TAB = 10;
+    static int[] tab_U1S1 = new int[TAILLE_TAB];
+    static int[] tab_U2S1 = new int[TAILLE_TAB];
+    static int[] tab_U3S1 = new int[TAILLE_TAB];
+    static int[] tab_U1S2 = new int[TAILLE_TAB];
+    static int[] tab_U2S2 = new int[TAILLE_TAB];
+    static int[] tab_U3S2 = new int[TAILLE_TAB];
+
+    ////////Nombre de note par UE et par Semestre//////
+    static int taille_tabU1S1 = 0;
+    static int taille_tabU2S1 = 0;
+    static int taille_tabU3S1 = 0;
+    static int taille_tabU1S2 = 0;
+    static int taille_tabU2S2 = 0;
+    static int taille_tabU3S2 = 0;
+
+    /////////Moyenne par UE et Semestre////////////////
+    static double moyU1S1;
+    static double moyU2S1;
+    static double moyU3S1;
+    static double moyU1S2;
+    static double moyU2S2;
+    static double moyU3S2;
+
+    /////////Moyenne Générale de lannée//////////////////
+    static double moyenneGen;
+
+    /////////Notes minimal par UE et par Semestre////////
+    static int minU1S1;
+    static int minU2S1;
+    static int minU3S1;
+    static int minU1S2;
+    static int minU2S2;
+    static int minU3S2;
+
+    /////////Notes maximal par UE et par Semestre////////
+    static int maxU1S1;
+    static int maxU2S1;
+    static int maxU3S1;
+    static int maxU1S2;
+    static int maxU2S2;
+    static int maxU3S2;
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        remplissageTableaux();
+        menu_principal();
+    }
+
+    /**
+     * Menu principal permettant l'appel des différents fonctionalités du
+     * logiciel.
+     */
+    static void menu_principal() {
+        boolean terminé = false;
+        int choix;
+        while (!terminé) {
+            affiche_menu();
+            choix = saisirNombreIntervalle(1, 5);
+            switch (choix) {
+                case 1: {
+                    afficherNotesUE();
+                    break;
+                }
+                case 2: {
+                    afficherInfosDesUE();
+                    break;
+                }
+                case 3: {
+                    noteAObtenir();
+                    break;
+                }
+                case 4: {
+                    //notePrévisionel();
+                    break;
+                }
+                case 5: {
+                    terminé = true;
+                    break;
+                }
+                default: {
+                    messageErreur();
+                    terminé = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * Affichage du menu de démarage.
+     */
+    static void affiche_menu() {
+        System.out.println("(1) afficher notes d'une UE\n"
+                + "(2) statistiques de vos UE\n"
+                + "(3) Note à obtenir au prochain devoir d'une UE pour avoir la moyenne\n"
+                + "(4) UE validées sur l'année\n"
+                + "(5) quitter");
+    }
+
+    /**
+     * Récupère un nombre d'une intervalle donnée.
+     *
+     * @return nombre saisie
+     */
+    static int saisirNombreIntervalle(int min, int max) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Saisir une valeur entre " + min + " et " + max + " :");
+        int num = sc.nextInt();
+        while (!(num >= min && num <= max)) {
+            System.out.println("Saisir une valeur entre " + min + " et " + max + " :");
+            num = sc.nextInt();
+        }
+        return num;
+    }
+
+////////////////////////////////////////Partie 1 : Affichage des notes d'une UE pour un semestre///////////////////////////////////
+    /**
+     * Afiichage des notes d'une UE pour un semestre.
+     *
+     */
+    static void afficherNotesUE() {
+        int choix_UE, choix_semestre;
+        String str = "";
+        System.out.println("Quelle UE ? 1/2/3");
+        choix_UE = saisirNombreIntervalle(1, 3);
+        System.out.println("Quelle semestre ? 1/2");
+        choix_semestre = saisirNombreIntervalle(1, 2);
+        switch (choix_UE) {
+            case 1:
+                switch (choix_semestre) {
+                    case 1:
+                        str = stringUeSemestre(tab_U1S1, taille_tabU1S1);
+                        break;
+                    case 2:
+                        str = stringUeSemestre(tab_U1S2, taille_tabU1S2);
+                        break;
+                }
+                break;
+            case 2:
+                switch (choix_semestre) {
+                    case 1:
+                        str = stringUeSemestre(tab_U2S1, taille_tabU2S1);
+                        break;
+                    case 2:
+                        str = stringUeSemestre(tab_U2S2, taille_tabU2S2);
+                        break;
+                }
+                break;
+            case 3:
+                switch (choix_semestre) {
+                    case 1:
+                        str = stringUeSemestre(tab_U3S1, taille_tabU3S1);
+                        break;
+                    case 2:
+                        str = stringUeSemestre(tab_U3S2, taille_tabU3S2);
+                        break;
+                }
+                break;
+        }
+        System.out.println("Notes de l'UE" + choix_UE + " semestre " + choix_semestre + " : " + str);
+        System.out.println("");
+    }
+
+    /**
+     * Gère l'affiche d'une UE.
+     *
+     * @param tab les notes d'une UE
+     * @param tailleTab le nombre de notes
+     * @return les notes de l'UE en question dans la console
+     */
+    static String stringUeSemestre(int[] tab, int tailleTab) {
+        String str = "";
+        for (int i = 0; i < tailleTab; i++) {
+            str = str + Integer.toString(tab[i]) + "/20 ";
+        }
+        return str;
+    }
+
+    /**
+     * Remplis mes tableau avec des notes et recupère le nombre de notes les
+     * moyennes, les notes minimales et les notes maximales de chaque UE.
+     *
+     */
+    static void remplissageTableaux() {
+        taille_tabU1S1 = remplirTableauAléatoire(tab_U1S1);
+        taille_tabU2S1 = remplirTableauAléatoire(tab_U2S1);
+        taille_tabU3S1 = remplirTableauAléatoire(tab_U3S1);
+        taille_tabU1S2 = remplirTableauAléatoire(tab_U1S2);
+        taille_tabU2S2 = remplirTableauAléatoire(tab_U2S2);
+        taille_tabU3S2 = remplirTableauAléatoire(tab_U3S2);
+
+        ////////////Les moyennes////////////////////
+        moyU1S1 = moyenneUE(tab_U1S1, taille_tabU1S1);
+        moyU2S1 = moyenneUE(tab_U2S1, taille_tabU2S1);
+        moyU3S1 = moyenneUE(tab_U3S1, taille_tabU3S1);
+        moyU1S2 = moyenneUE(tab_U1S2, taille_tabU1S2);
+        moyU2S2 = moyenneUE(tab_U2S2, taille_tabU2S2);
+        moyU3S2 = moyenneUE(tab_U3S2, taille_tabU3S2);
+        moyenneGen = (moyU1S1 + moyU2S1 + moyU3S1 + moyU1S2 + moyU2S2 + moyU3S2) / 6;
+
+        /////////////Les notes minimales/////////////
+        minU1S1 = noteMin(tab_U1S1, taille_tabU1S1);
+        minU2S1 = noteMin(tab_U2S1, taille_tabU2S1);
+        minU3S1 = noteMin(tab_U3S1, taille_tabU3S1);
+        minU1S2 = noteMin(tab_U1S2, taille_tabU1S2);
+        minU2S2 = noteMin(tab_U2S2, taille_tabU2S2);
+        minU3S2 = noteMin(tab_U3S2, taille_tabU3S2);
+
+        ///////////Les notes maximales////////////////
+        maxU1S1 = noteMax(tab_U1S1, taille_tabU1S1);
+        maxU2S1 = noteMax(tab_U2S1, taille_tabU2S1);
+        maxU3S1 = noteMax(tab_U3S1, taille_tabU3S1);
+        maxU1S2 = noteMax(tab_U1S2, taille_tabU1S2);
+        maxU2S2 = noteMax(tab_U2S2, taille_tabU2S2);
+        maxU3S2 = noteMax(tab_U3S2, taille_tabU3S2);
+    }
+
+    /**
+     * Remplissage aléatoire d'un tableau rempli en paramètre.
+     *
+     * @param tab tableau d'entier
+     * @return le nombre de notes entré dans le tableau
+     */
+    static int remplirTableauAléatoire(int[] tab) {
+        Random random = new Random();
+        int nombreNotes;
+        nombreNotes = random.nextInt(TAILLE_TAB - 1 + 1) + 1;
+        for (int i = 0; i < nombreNotes; i++) {
+            tab[i] = random.nextInt(20 - 0 + 1) + 0;
+        }
+        return nombreNotes;
+    }
+
+///////////////////////////////Partie 2 : Information sur les UE////////////////////////////////
+    /**
+     * Affichage des statistiques de chauqe UE de chauque semestre.
+     */
+    static void afficherInfosDesUE() {
+        System.out.println("Informations sur toutes les UE de l'année");
+        System.out.println("                    S1                    |                    S2                    \n"
+                + "-------------------------------------------------------------------------------------");
+        System.out.printf("UE1| moy : %.2f min : %d max : %d"
+                + "          | moy : %.2f min : %d max : %d \n", moyU1S1, minU1S1, maxU1S1, moyU1S2, minU1S2, maxU1S2);
+        System.out.printf("UE2| moy : %.2f min : %d max : %d"
+                + "          | moy : %.2f min : %d max : %d \n", moyU2S1, minU2S1, maxU2S1, moyU2S2, minU2S2, maxU2S2);
+        System.out.printf("UE3| moy : %.2f min : %d max : %d"
+                + "          | moy : %.2f min : %d max : %d \n", moyU3S1, minU3S1, maxU3S1, moyU3S2, minU3S2, maxU3S2);
+        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.printf("Moyenne générale : %.2f \n", moyenneGen);
+        System.out.println("-------------------------------------------------------------------------------------");
+    }
+
+    /**
+     * Donne la moyenne d'une UE
+     *
+     * @param tab les notes d'une UE
+     * @param tailleTab nombre notes
+     * @return la moyenne
+     */
+    static double moyenneUE(int[] tab, int tailleTab) {
+        float moy = 0;
+        for (int i = 0; i < tailleTab; i++) {
+            moy = moy + (float) tab[i];
+        }
+        moy = moy / (float) tailleTab;
+        return moy;
+    }
+
+    /**
+     * Donne la note minimal d'une UE.
+     *
+     * @param tab les notes d'une UE
+     * @param tailleTab le nombre de notes
+     * @return le minimum
+     */
+    static int noteMin(int[] tab, int tailleTab) {
+        int min = 20;
+        for (int i = 0; i < tailleTab; i++) {
+            if (min > tab[i]) {
+                min = tab[i];
+            }
+        }
+        return min;
+    }
+
+    /**
+     * Donne la note maximal d'une UE.
+     *
+     * @param tab les notes d'une UE
+     * @param tailleTab le nombre de notes
+     * @return
+     */
+    static int noteMax(int[] tab, int tailleTab) {
+        int max = tab[0];
+        for (int i = 0; i < tailleTab; i++) {
+            if (max < tab[i]) {
+                max = tab[i];
+            }
+        }
+        return max;
+    }
+
+///////////////////////Partie 3 : Note à avoir au prochain évaluation//////////////////
+    static void noteAObtenir() {
+        int choix_UE, choix_semestre;
+        System.out.println("Quelle UE ? 1/2/3");
+        choix_UE = saisirNombreIntervalle(1, 3);
+        System.out.println("Quelle semestre ? 1/2");
+        choix_semestre = saisirNombreIntervalle(1, 2);
+        printsaisirUE_Semestre(choix_UE,choix_UE);
+
+    }
+
+    static String saisirUE_Semestre(int choix_UE, int choix_semestre) {
+        String str = "";
+        choix_semestre = saisirNombreIntervalle(1, 2);
+        switch (choix_UE) {
+            case 1:
+                switch (choix_semestre) {
+                    case 1:
+                        str = stringUeSemestre(tab_U1S1, taille_tabU1S1);
+                        break;
+                    case 2:
+                        str = stringUeSemestre(tab_U1S2, taille_tabU1S2);
+                        break;
+                }
+                break;
+            case 2:
+                switch (choix_semestre) {
+                    case 1:
+                        str = stringUeSemestre(tab_U2S1, taille_tabU2S1);
+                        break;
+                    case 2:
+                        str = stringUeSemestre(tab_U2S2, taille_tabU2S2);
+                        break;
+                }
+                break;
+            case 3:
+                switch (choix_semestre) {
+                    case 1:
+                        str = stringUeSemestre(tab_U3S1, taille_tabU3S1);
+                        break;
+                    case 2:
+                        str = stringUeSemestre(tab_U3S2, taille_tabU3S2);
+                        break;
+                }
+                break;
+        }
+        return str;
+    }
+
+///////////////////////////////////////////////////////////////////////////////////
+    /**
+     * Message en cas d'erreur.
+     */
+    static void messageErreur() {
+        System.out.println("Erreur 404. Fermeture forcé du logiciel !!!");
+    }
+}
