@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>AnnalesTD - Cycle 3 - Objets</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/purebasic.min.css">
+        <link href="css/style.css" rel="stylesheet">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Cycle 3 - Objets</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="index.html" class="nav-link">Descriptif</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="memoTD.html" class="nav-link">Mémo-TD</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="memoTP.html" class="nav-link">Mémo-TP</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="ressourcesTP.html" class="nav-link">Ressources-TP</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="annalesTD.html" class="nav-link">AnnalesTD</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="annalesTP.html" class="nav-link">AnnalesTP</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="ressourcesTP.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="annalesTP.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#exercice-1-cours-et-java-java-6-points" class="nav-link">Exercice 1 : Cours et Java [Java, 6 points]</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#exercice-2-tableaux-dentiers-exalgo-6-points" class="nav-link">Exercice 2 : Tableaux d'entiers [ExAlgo, 6 points]</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#exercice-3-tableaux-a-2-dimensions-exalgo-8-points" class="nav-link">Exercice 3 : Tableaux à 2 dimensions [ExAlgo, 8 points]</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="exercice-1-cours-et-java-java-6-points">Exercice 1 : Cours et Java [Java, 6 points]</h1>
+<p>Nous poursuivons l'exercice sur le morpion du TP.</p>
+<p>Pour rappel:</p>
+<ul>
+<li>l'énumération <code>Direction</code> contient<ul>
+<li>8 directions : <code>NORD</code>, <code>SUD</code>, <code>EST</code>, <code>OUEST</code>, <code>NORD_EST</code>, <code>NORD_OUEST</code>, <code>SUD_EST</code>, <code>SUD_OUEST</code>,</li>
+<li>une méthode <code>toutes()</code> qui renvoie un tableau avec ces 8 directions.</li>
+</ul>
+</li>
+<li>la classe <code>Coordonnees</code> possède :<ul>
+<li>les attributs <code>int ligne</code> et <code>int colonne</code>,</li>
+<li>une méthode <code>Coordonnees suivante(Direction d)</code> qui renvoie les coordonnées obtenues en partant des coordonnées courantes et en suivant une direction. Par exemple : <code>new Coordonnees(3,1).suivante(Direction.OUEST)</code> renvoie les coordonnées <code>(3,0)</code>, car <code>(3,0)</code> est juste à l'ouest de <code>(3,1)</code> : même ligne, et une colonne à gauche.</li>
+<li>une méthode <code>equals()</code> qui permet de tester si deux objets <code>Coordonnees</code> sont égaux (même ligne et même colonne).</li>
+</ul>
+</li>
+</ul>
+<p>Voici le code d'une nouvelle méthode <code>v</code> dans la classe <code>Coordonnees</code> :</p>
+<pre><code class="language-Java">static boolean v(Coordonnees coord1, Coordonnees coord2) {
+    boolean b = false;
+    for (Direction d : Direction.values()) {
+        if (coord2.equals(coord1.suivante(d))) {
+            b = true;
+        }
+    }
+    return b;
+}
+</code></pre>
+<div class="admonition exo">
+<p class="admonition-title">Question 1</p>
+<p>En Java, qu'est-ce qu'une énumération ?</p>
+</div>
+<div class="admonition exo">
+<p class="admonition-title">Question 2</p>
+<p>Comment appelle-t-on une méthode ayant le mot-clé <code>static</code> ?</p>
+</div>
+<div class="admonition exo">
+<p class="admonition-title">Question 3</p>
+<p>Que signifie le mot-clé <code>static</code> (de manière générale) ? Dans quel(s) cas est-il employé (ou non) sur une méthode ?</p>
+</div>
+<div class="admonition exo">
+<p class="admonition-title">Question 4</p>
+<p>Que calcule la méthode <code>v()</code> ?</p>
+</div>
+<div class="admonition exo">
+<p class="admonition-title">Question 5</p>
+<p>Complétez le code ci-dessous (sur votre copie) pour que <code>t</code> contienne le résultat
+de l'appel à la méthode <code>v()</code> sur les coordonnées <code>(8,3)</code> et <code>(7,2)</code>. Vous pouvez ajouter d'autres lignes de code avant si vous le souhaitez :</p>
+</div>
+<pre><code class="language-Java">boolean t = ...
+</code></pre>
+<h1 id="exercice-2-tableaux-dentiers-exalgo-6-points">Exercice 2 : Tableaux d'entiers [ExAlgo, 6 points]</h1>
+<p>L'objectif de cet exercice est d'écrire une fonction retournant <code>vrai</code> si un tableau d'entiers passé en paramètre contient au moins une suite strictement croissante de longueur 4 ou plus, <code>faux</code> sinon. </p>
+<p>Exemple 1 :  <code>| 1 | 2 | 1 | 0 | 5 | 8 | 9 | 4 | 12 |</code></p>
+<p>contient bien au moins une suite strictement croissante de longueur 4 ou plus : la suite 0 5 8 9.</p>
+<p>Exemple 2 : <code>| 1 | 2 | 1 | 3 | 5 | 8 | 9 | 4 | 12 |</code></p>
+<p>contient bien au moins une suite strictement croissante de longueur 4 ou plus : la suite 1 3 5 8 9 (par exemple).</p>
+<p>Exemple 3 : <code>| 1 | 2 | 1 | 0 | 5 | 10 | 9 | 4 | 12 |</code>  </p>
+<p>ne contient pas une suite strictement croissante de longueur 4 ou plus.</p>
+<p>Exemple 4 : <code>| 1 | 2 | 1 | 3 | 5 | 5 | 9 | 4 | 12 |</code></p>
+<p>ne contient pas une suite strictement croissante de longueur 4 ou plus.</p>
+<div class="admonition exo">
+<p class="admonition-title">Question 6</p>
+<p>Écrire, <strong>en ExAlgo</strong>,  le prototype (c'est-à-dire la signature) de la fonction. Justifiez le mode de passage du (ou des) paramètre(s) (E ou ES).</p>
+</div>
+<ul>
+<li>Dans l'exemple 1, le tableau contient une suite strictement croissante de longueur 4.</li>
+<li>Dans l'exemple 2, le tableau contient une suite strictement croissante de longueur &gt;=4.</li>
+<li>Dans l'exemple 3, la plus longue suite strictement croissante est de longueur 3.</li>
+<li>Dans l'exemple 4, le tableau contient une suite croissante de taille 5, mais elle n'est pas <strong>strictement</strong> croissante (les deux 5 qui se suivent).</li>
+</ul>
+<div class="admonition exo">
+<p class="admonition-title">Question 7</p>
+<ul>
+<li>Proposez un tableau permettant de tester un autre cas limite <strong>contenant</strong> au moins une suite strictement croissante de longueur 4 ou plus. Expliquez en une phrase ce que vous testez. </li>
+<li>Proposez un tableau permettant de tester un autre cas limite <strong>ne contenant pas</strong> une suite strictement croissante de longueur 4 ou plus. Expliquez en une phrase ce que vous testez.</li>
+</ul>
+</div>
+<div class="admonition exo">
+<p class="admonition-title">Question 8</p>
+<p>Écrire l'algorithme. <em>Cette question est assez difficile, n'hésitez pas à y revenir plus tard.</em></p>
+</div>
+<h1 id="exercice-3-tableaux-a-2-dimensions-exalgo-8-points">Exercice 3 : Tableaux à 2 dimensions [ExAlgo, 8 points]</h1>
+<p>L'objectif de cet exercice est d'écrire la fonction :  </p>
+<pre><code class="language-exalgo">Fonction maxSommesTableau(E t : tableau d'entiers à deux dimensions, 
+                          ES maxLigne : entier, ES numLigne : entier)
+</code></pre>
+<p>qui calcule la somme de chaque ligne d'un tableau d'entiers à deux dimensions et met à jour la variable <code>maxLigne</code> avec la somme maximale calculée, et <code>numLigne</code> avec le numéro de la ligne correspondant à ce maximum. </p>
+<p>S'il y a plusieurs maximums alors c'est la première ligne qui est retournée.</p>
+<p>Par exemple, après exécution de la fonction <code>maxSommesTableau()</code> sur le tableau ci-après, <code>maxLigne</code> vaut 13 et <code>numLigne</code> vaut 1 : c'est la ligne 1 qui a la somme maximale, qui vaut 13.</p>
+<table>
+<thead>
+<tr>
+<th>1</th>
+<th>-2</th>
+<th>1</th>
+<th>-3</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>1</td>
+<td>7</td>
+<td>4</td>
+<td>-3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>-1</td>
+<td>1</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0</td>
+<td>1</td>
+<td>3</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition exo">
+<p class="admonition-title">Question 9</p>
+<p>Pourquoi les variables <code>maxLigne</code> et <code>numLigne</code> sont-elles passées en ES ?</p>
+</div>
+<div class="admonition exo">
+<p class="admonition-title">Question 10</p>
+<p>Proposez deux tests unitaires. Expliquez chacun d'eux en une phrase. Pour déclarer un tableau à deux dimensions, et vérifier qu'un booléen est vrai en ExAlgo, vous pouvez utiliser la syntaxe suivante :</p>
+</div>
+<pre><code class="language-exalgo">Var t : tableau d'entiers à deux dimensions
+t = { { -5, 3, 2}, {3, 3, -1} } 
+Affirmer (1 + 1 == 2)
+</code></pre>
+<div class="admonition exo">
+<p class="admonition-title">Question 11</p>
+<p>Écrire le code de la fonction <code>Fonction sommeUneLigne(E t : tableau d'entiers) : entier</code> qui retourne la somme des entiers du tableau <code>t</code>.</p>
+</div>
+<div class="admonition exo">
+<p class="admonition-title">Question 12</p>
+<p>Écrire la fonction <code>maxSommesTableau()</code>. On rappelle que si <code>t</code> est un tableau d'entiers à deux dimensions, alors <code>t[i]</code> désigne sa <em>i</em>-ème ligne.</p>
+</div>
+<p>On ne s'intéresse à présent qu'à des tableaux d'entiers à 2 dimensions qui contiennent exactement 4 zéros (pas besoin de le tester). On souhaite déterminer si ces 4 zéros forment un carré, avec la notion intuitive de carré, et on ne s'intéresse qu'aux carrés horizontaux/verticaux.</p>
+<p>Ainsi le tableau ci-contre <strong>contient</strong> un carré :</p>
+<table>
+<thead>
+<tr>
+<th>2</th>
+<th>-3</th>
+<th>4</th>
+<th>-1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>-2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>-2</td>
+<td>8</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0</td>
+<td>-6</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Par contre le tableau ci-dessous <strong>ne contient pas</strong> de carré :</p>
+<table>
+<thead>
+<tr>
+<th>2</th>
+<th>-3</th>
+<th>0</th>
+<th>-1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>5</td>
+<td>-2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>-2</td>
+<td>8</td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0</td>
+<td>-6</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition exo">
+<p class="admonition-title">Question 13</p>
+<p>Écrire le code de la fonction <code>Fonction contientCarre(E t : tableau d'entiers à 2 dimensions) : booléen</code> qui indique si le tableau <code>t</code> contient un carré.</p>
+</div></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>IUT de Bordeaux</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
