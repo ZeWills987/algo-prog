@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>Ressources-TP - Cycle 3 - Objets</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/purebasic.min.css">
+        <link href="css/style.css" rel="stylesheet">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Cycle 3 - Objets</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="index.html" class="nav-link">Descriptif</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="memoTD.html" class="nav-link">Mémo-TD</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="memoTP.html" class="nav-link">Mémo-TP</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="ressourcesTP.html" class="nav-link">Ressources-TP</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="annalesTD.html" class="nav-link">AnnalesTD</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="annalesTP.html" class="nav-link">AnnalesTP</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="memoTP.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="annalesTD.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#morpion" class="nav-link">Morpion</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#coordonnees-dans-une-grille" class="nav-link">Coordonnées dans une grille</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#enumeration-direction" class="nav-link">Énumération Direction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#suivant-une-direction" class="nav-link">Suivant une direction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#cases-voisines" class="nav-link">Cases voisines</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#nombre-de-voisins-amis" class="nav-link">Nombre de voisins amis</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#distributeur-de-bonbons" class="nav-link">Distributeur de bonbons</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#enumeration-parfum" class="nav-link">Énumération Parfum</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#classe-bonbon" class="nav-link">Classe Bonbon</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#classe-distributeur" class="nav-link">Classe Distributeur</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#utilisation-des-classes-creees" class="nav-link">Utilisation des classes créées</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#aller-plus-loin" class="nav-link">Aller plus loin</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="morpion">Morpion</h1>
+<p>En premier lieu,</p>
+<ul>
+<li>récupérer <a href="code/morpion.zip">ce projet Morpion</a> et
+le sauvegarder sur votre compte,</li>
+<li>importer ce fichier zip directement dans NetBeans
+via le menu <code>File</code> / <code>Import project</code>/ <code>From zip....</code>.
+Ne pas dézipper ce fichier à la main !</li>
+</ul>
+<p>Ce projet contient tout le code permettant de jouer au morpion.</p>
+<div class="admonition exo">
+<p>Compilez le code du morpion et testez-le.
+Vous observerez que le calcul des scores est buggé.
+Pour l'instant ne corrigez pas ce bug.</p>
+</div>
+<p>Observez la classe <code>Coordonnees</code>.
+Elle contient :</p>
+<ul>
+<li>2 <strong>attributs</strong>, les entiers <code>ligne</code> et <code>colonne</code>.
+Ainsi un objet de type <code>Coordonnees</code> stocke un numéro de ligne et
+un numéro de colonne d'une grille.</li>
+<li>plusieurs <strong>méthodes</strong> (fonctions) dont <code>static boolean estDansPlateau(Coordonnees coord, int taille)</code>,
+  qui indique si les coordonnées <code>coord</code> sont dans la grille carrée
+  de taille <code>taille x taille</code>.
+  Par exemple <code>(0, 0)</code> est dans la grille de taille 14x14,
+  mais pas <code>(-1, 1)</code> : on retrouve ces cas dans les tests unitaires de cette
+  méthode, dans <code>CoordonneesTest</code>.</li>
+</ul>
+<h2 id="coordonnees-dans-une-grille">Coordonnées dans une grille</h2>
+<div class="admonition exo">
+<p>Faîtes tourner ces tests unitaires, puis corrigez la méthode
+<code>estDansPlateau()</code> pour qu'ils passent.</p>
+</div>
+<h2 id="enumeration-direction">Énumération Direction</h2>
+<p>Observez l'énumération nommée <code>Direction</code> et ses différentes méthodes.</p>
+<h2 id="suivant-une-direction">Suivant une direction</h2>
+<p>La méthode <code>static Coordonnees suivante(Coordonnees c, Direction d)</code> de la classe <code>Coordonnees</code>
+permet d'obtenir les coordonnées de la case atteinte lorsqu'on part
+des coordonnées <code>c</code> et que l'on applique la direction <code>d</code>
+passée en paramètre.</p>
+<p>Par exemple :</p>
+<pre><code class="language-java">Coordonnees avant = new Coordonnees(3, 3);
+Coordonnees apres = Coordonnees.suivante(avant, Direction.EST);
+System.out.println(apres); // affiche (3, 4)
+</code></pre>
+<div class="admonition exo">
+<p>Exécutez le test unitaire de la fonction <code>suivante()</code>
+dans <code>CoordonneesTest</code>. Vous remarquerez qu'il ne passe pas.</p>
+<p>Dans le cas testé, la fonction <code>suivante()</code> est bonne.
+C'est le test unitaire qui présente une erreur.
+Identifiez l'erreur commise dans ce test unitaire et corrigez-le. </p>
+</div>
+<h2 id="cases-voisines">Cases voisines</h2>
+<p>La méthode <code>voisines()</code> de la classe <code>Coordonnees</code>
+prend en paramètre des coordonnées, la taille de la grille
+(toujours supposée carrée), et renvoie un tableau contenant
+les coordonnées des cases voisines.</p>
+<div class="admonition exo">
+<p>Codez cette méthode.</p>
+<p>L'instruction <code>Arrays.copyOf(voisines, nbVoisines)</code> permet ici
+de renvoyer une copie du tableau <code>voisines</code> ne contenant
+que ses <code>nbVoisines</code> premières cases.</p>
+</div>
+<div class="admonition exo">
+<p>Codez des tests unitaires pour la méthode <code>voisines()</code>,
+dans <code>CoordonneesTest</code>. Vous testerez notamment que :</p>
+<ul>
+<li>une case dans un coin ne possède que 3 voisines,</li>
+<li>une case sur un bord mais loin d'un coin possède 5 voisines,</li>
+<li>une case loin des bords possède 8 voisines.</li>
+</ul>
+<p>Vérifiez que ces tests passent.</p>
+</div>
+<h2 id="nombre-de-voisins-amis">Nombre de voisins amis</h2>
+<div class="admonition exo">
+<p>Dans la classe Grille, codez la méthode <code>nbVoisinsAppartenantAuJoueur()</code>.
+Référez-vous à sa documentation pour en comprendre la définition.
+Vous pourrez utiliser la méthode <code>contenuCase()</code> pour accéder
+au contenu d'une case à partir de ses coordonnées.</p>
+<p>Dans <code>Test Packages</code>, créez la classe <code>GrilleTest</code> dans <code>morpion</code>
+et ajoutez-y la méthode ci-dessous. Vérifiez que ces tests passent.</p>
+</div>
+<pre><code class="language-java">@Test
+public void testNbVoisinsAppartenantAuJoueur() {
+    int[][] contenu = {{2, 1, 1}, {2, 0, 0}, {2, 0, 0}};
+    Grille grille = new Grille(3);
+    Grille.changerContenuGrille(grille, contenu);
+    assertEquals(2, Grille.nbVoisinsAppartenantAuJoueur(grille, 1, new Coordonnees(1, 1)));
+    assertEquals(3, Grille.nbVoisinsAppartenantAuJoueur(grille, 2, new Coordonnees(1, 1)));
+    assertEquals(0, Grille.nbVoisinsAppartenantAuJoueur(grille, 1, new Coordonnees(2, 2)));
+    assertEquals(1, Grille.nbVoisinsAppartenantAuJoueur(grille, 2, new Coordonnees(0, 0)));
+}
+</code></pre>
+<p>Une fois les tests passés, réalisez plusieurs parties et
+vérifiez que tout est conforme à la vidéo du début.</p>
+<h1 id="distributeur-de-bonbons">Distributeur de bonbons</h1>
+<h2 id="enumeration-parfum">Énumération Parfum</h2>
+<div class="admonition exo">
+<p>Créez l'énumération <code>Parfum</code> dans un fichier <code>Parfum.java</code>.
+Cette énumération contient les 6 saveurs définies dans les fonctionnalités.</p>
+</div>
+<h2 id="classe-bonbon">Classe Bonbon</h2>
+<h3 id="attributs">Attributs</h3>
+<div class="admonition exo">
+<p>Créez la classe <code>Bonbon</code> dans un fichier <code>Bonbon.java</code>.
+Cette classe a 4 <strong>attributs d'instance</strong> et 1 <strong>attribut de classe</strong> :</p>
+<ol>
+<li>un <code>String</code> de nom <code>denomination</code> qui permet de stocker le nom du bonbon ("tigre", ...).</li>
+<li>un <code>Parfum</code> de nom <code>parfum</code> qui permet de stocker le parfum du bonbon.</li>
+<li>un <code>double</code> de nom <code>poids</code> qui permet de stocker le poids du bonbon.</li>
+<li>un <code>double</code> de nom <code>calories</code> qui permet de stocker le nombre de calories contenues dans le bonbon.</li>
+<li>un <strong>attribut de classe</strong> de type <code>int</code> permettant de savoir combien de bonbons ont été créés.</li>
+</ol>
+</div>
+<h3 id="constructeur">Constructeur</h3>
+<div class="admonition exo">
+<p>Créez le constructeur <code>Bonbon(String uneDenomination, Parfum unParfum, double unPoids, double desCalories)</code> qui initialise chaque attribut d'une instance de <code>Bonbon</code> et qui incrémente le nombre de <code>Bonbon</code> créés.</p>
+</div>
+<div class="admonition exo">
+<p>Créez 6 tests unitaires. Ci-dessous un exemple.</p>
+</div>
+<pre><code class="language-java">Bonbon b = new Bonbon(&quot;Chypresers&quot;, Parfum.RIZ, 55, 242);
+assertEquals(Parfum.RIZ, b.parfum);
+assertEquals(&quot;Chypresers&quot;, b.denomination);
+assertEquals(55.0, b.poids, 0.01);
+assertEquals(242.0, b.calories, 0.01);
+</code></pre>
+<h3 id="fabrique-de-bonbons">Fabrique de bonbons</h3>
+<div class="admonition exo">
+<p>Afin de se simplifier l'écriture d'une construction d'un bonbon en particulier, créez les <strong>méthodes de classe</strong> de création de chaque bonbon possible. Ci-dessous un exemple.</p>
+</div>
+<pre><code class="language-Java">/**
+* Méthode statique permettant de construire et de retourner un &quot;chypresers&quot;
+*
+* @return un bonbon ayant les caractéristique d'un chypresers
+*/
+static Bonbon chypresers() {
+    return new Bonbon(&quot;Chypresers&quot;, Parfum.RIZ, 55, 242);
+}
+</code></pre>
+<div class="admonition exo">
+<p>Ajoutez des tests pour ces nouvelles méthodes, comme par exemple :</p>
+</div>
+<pre><code class="language-Java">Bonbon b = Bonbon.chypresers();
+assertEquals(Parfum.RIZ, b.parfum);
+assertEquals(&quot;Chypresers&quot;, b.denomination);
+assertEquals(55.0, b.poids, 0.01);
+assertEquals(242.0, b.calories, 0.01);               
+</code></pre>
+<h3 id="methode-initiale">Méthode initiale()</h3>
+<div class="admonition exo">
+<p>Créér la <strong>méthode d'instance</strong> <code>char initiale()</code> qui retourne une lettre correspondant au bonbon. <code>'c'</code> pour caramel, <code>'C'</code> pour chocolat, <code>'F'</code> pour fraise, <code>'N'</code> pour noisette, ...</p>
+</div>
+<div class="admonition exo">
+<p>Écrire les tests unitaires correspondants. </p>
+</div>
+<h3 id="methode-afficher">Méthode afficher()</h3>
+<div class="admonition exo">
+<p>Créer la <strong>méthode d'instance</strong> <code>afficher()</code> qui affiche les caractéristiques d'un bonbon comme décrit dans la partie <strong>Descriptif</strong>.</p>
+</div>
+<h2 id="classe-distributeur">Classe Distributeur</h2>
+<h3 id="attributs_1">Attributs</h3>
+<div class="admonition exo">
+<p>Cette classe possède 1 <strong>attribut de classe</strong> et 2 <strong>attributs d'instance</strong> :</p>
+<ol>
+<li>un <strong>attribut de classe</strong> de type <code>int</code> dont le nom est <code>CONTENANCE_MAX</code> et dont la valeur contante (<code>50</code>) correspond au nombre maximum de bonbons que peut contenir ce distributeur.</li>
+<li>un <strong>attribut d'instance</strong> de type <code>int</code> de nom <code>nombreBonbons</code> qui permet de stocker le nombre de bonbons dans ce distributeur.</li>
+<li>un <strong>attribut d'instance</strong> de type <code>Bonbon[]</code> de nom <code>contenu</code> qui permet de stocker des <code>Bonbon</code> dans un tableau.</li>
+</ol>
+</div>
+<h3 id="constructeur_1">Constructeur</h3>
+<div class="admonition exo">
+<p>Créer le constructeur <code>Distributeur()</code> qui permet d'instancier le tableau de <code>Bonbon</code> et d'initialiser le nombre de <code>Bonbon</code> à l'intérieur.</p>
+</div>
+<p>Le test unitaire suivant doit passer :</p>
+<pre><code class="language-Java">Distributeur d = new Distributeur();
+assertEquals(0, d.nombreBonbons);
+assertNotEquals(null, d.contenu);
+assertEquals(Distributeur.CONTENANCE_MAX, d.contenu.length);
+</code></pre>
+<h3 id="methode-ajouterbonbon">Méthode ajouterBonbon()</h3>
+<div class="admonition exo">
+<p>Créer la <strong>méthode d'instance</strong> <code>boolean ajouterBonbon(Bonbon b)</code> qui permet d'ajouter un bonbon dans le distributeur. Cette méthode retourne <code>true</code> si le bonbon a pu être ajouté, <code>false</code> sinon .</p>
+</div>
+<div class="admonition exo">
+<p>Créer 4 tests unitaires. Vous pouvez temporairement diminuer la taille du distributeur pour tester certains cas limites.</p>
+</div>
+<h3 id="methode-afficherdistributeur">Méthode afficherDistributeur()</h3>
+<div class="admonition exo">
+<p>Créer la <strong>méthode d'instance</strong> <code>void afficherDistributeur()</code> qui affiche <strong>en mode texte</strong> le contenu du distributeur (cf partie <strong>Descriptif</strong>).</p>
+</div>
+<h3 id="methode-retirerbonbon">Méthode retirerBonbon()</h3>
+<div class="admonition exo">
+<p>Créer une <strong>méthode d'instance</strong> permettant de supprimer le dernier bonbon ajouté dans le distributeur. Créer 4 tests unitaires. Attention aux cas limites.</p>
+</div>
+<h3 id="methode-retirerbonbons">Méthode retirerBonbons()</h3>
+<div class="admonition exo">
+<p>Créer une <strong>méthode d'instance</strong> permettant de supprimer plusieurs bonbons en respectant les consignes données dans la partie <strong>Descriptif</strong>. Créer 4 tests unitaires.   </p>
+</div>
+<h2 id="utilisation-des-classes-creees">Utilisation des classes créées</h2>
+<p>Dans la classe contenant la méthode <code>public static void main(String[] args)</code> vous pouvez désormais coder les méthodes utilisant les 3 classes permettant de gérer un distributeur de bonbons.</p>
+<div class="admonition exo">
+<p>Codez les méthodes permettant comme sur la vidéo :</p>
+<ul>
+<li>d'afficher le menu principal et demander à l'utilisateur l'opération à réaliser ;</li>
+<li>d'exécuter la méthode choisie par l'utilisateur. Comme sur les vidéos / copies d'écran des informations s'affichent après exécution des fonctionnalités (ajout/suppression). Respectez l'affichage défini dans le descriptif.</li>
+</ul>
+</div>
+<h2 id="aller-plus-loin">Aller plus loin</h2>
+<h3 id="affichage-graphique-du-distributeur">Affichage graphique du distributeur</h3>
+<div class="admonition exo">
+<p>Codez la <strong>méthode d'instance</strong> <code>dessiner()</code> de la classe <code>Distributeur</code>, qui affiche en mode graphique le distributeur. Le prochain bonbon qui sera retiré s'affiche au milieu tout en bas du distributeur. </p>
+</div></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>IUT de Bordeaux</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
